@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "modulo.schema.json",
+  "title": "Entrada del Registro de Módulos / Module Registry Entry",
+  "description": "Esquema bilingüe para módulos en el sistema Sovereign Sanctuary",
+  "type": "object",
+  "required": ["nombre", "name", "proposito", "purpose", "aplica_a", "applies_to", "estado", "status", "ultimo_uso", "last_used"],
+  "properties": {
+    "nombre": {
+      "type": "string",
+      "description": "Nombre corto y recordable (español)",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "name": {
+      "type": "string",
+      "description": "Short, recallable name (English)",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "proposito": {
+      "type": "string",
+      "description": "Qué hace en una línea (español)",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "purpose": {
+      "type": "string",
+      "description": "What it does in one line (English)",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "aplica_a": {
+      "type": "array",
+      "description": "Contextos relevantes (español)",
+      "items": {
+        "type": "string",
+        "enum": ["Cooperativa", "Comunidad", "Municipal", "Personal", "Empresa", "Todos"]
+      },
+      "minItems": 1
+    },
+    "applies_to": {
+      "type": "array",
+      "description": "Relevant contexts (English)",
+      "items": {
+        "type": "string",
+        "enum": ["Cooperative", "Community", "Municipal", "Personal", "Enterprise", "All"]
+      },
+      "minItems": 1
+    },
+    "estado": {
+      "type": "string",
+      "description": "Estado del ciclo de vida (español)",
+      "enum": ["Borrador", "Activo", "Aparcado", "Obsoleto"]
+    },
+    "status": {
+      "type": "string",
+      "description": "Lifecycle state (English)",
+      "enum": ["Draft", "Active", "Parked", "Deprecated"]
+    },
+    "ultimo_uso": {
+      "type": ["string", "null"],
+      "description": "Fecha ISO del último uso (español)",
+      "format": "date"
+    },
+    "last_used": {
+      "type": ["string", "null"],
+      "description": "ISO date of last use (English)",
+      "format": "date"
+    }
+  },
+  "additionalProperties": false
+}

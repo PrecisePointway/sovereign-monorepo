@@ -1,0 +1,59 @@
+{
+  "event_type": "KERNEL_SEAL",
+  "kernel_name": "Sovereign Governance Kernel",
+  "kernel_version": "1.0.0",
+  "season": 2,
+  "mode": "NFP Governance Core",
+  "seal_state": "SEALED",
+  "mutation": "DISALLOWED",
+  "unlock_authority": "QUORUM_ONLY",
+  "challengeability": "UNIVERSAL",
+  "issued_by": "governance_daemon",
+  "timestamp": "2026-01-28T21:27:01Z",
+  "artifact_hash_set": {
+    "invariants.py": "2462026d0ac15bec13018652ebeae5f979e360ffb9ce76ec0672851f5da77597",
+    "governance_daemon.py": "dc9edbd99037035293d4b724e4ec68b686ba713fb876f0bb6b98adede119d113",
+    "halt_matrix.py": "445cdcea9c96e28b4654a35d1f863b6040f7e2017f06956d1b417db08f4d1976",
+    "milspec_seal.py": "9e7c85ee39cb7af80ff97b0d6131bda4008fedd7fdf6b9978f20afaf0ddc5792",
+    "defense_layers.py": "e6c133625917030cfaec515dca271a28853d7e9221f892d78a39b59febdac7ad",
+    "hug_protocol.py": "288e87d2edae9fa910465fd4cd7b6398a3cc20be8a8d7a644f4e8d312a407d8e",
+    "__init__.py": "e026c6e98f1d14f35501aa64055af27e27b40f905c2c4f0149b050c4df4b30a0"
+  },
+  "repository_anchor": {
+    "repository": "PrecisePointway/sovereign-infra",
+    "branch": "main",
+    "commit": "aa7fd78c97d484c1b1e788da270088f677ab2faa",
+    "commit_short": "aa7fd78",
+    "commit_date": "2026-01-28T21:27:01Z"
+  },
+  "sealed_artifacts": [
+    "YAML Governance Directives",
+    "Invariant Registry (INV-001 \u2192 INV-020)",
+    "Quorum Authority Model",
+    "Challenge Protocol",
+    "Reason Code Registry",
+    "Privileged-Operation Halt Matrix",
+    "Ledger Serialization Rules",
+    "H.U.G Protocol enforcement paths"
+  ],
+  "post_seal_rules": {
+    "modification_requires": [
+      "version_bump",
+      "new_seal",
+      "quorum_authorization"
+    ],
+    "privileged_ops_may_alter": false,
+    "temporary_bypasses": false,
+    "read_only_introspection": true,
+    "challenges_valid": true
+  },
+  "verification_checks": [
+    "Recompute artifact hashes on startup",
+    "Verify ledger seal entry",
+    "Confirm branch and commit ancestry",
+    "Raise SEC-002 or EVC-004 on mismatch",
+    "Enter halt state on critical divergence"
+  ],
+  "declaration": "Governance Kernel v1.0 is now constitutionally immutable. Authority exists only by quorum. Truth exists only by evidence. Behavior exists only by rule.",
+  "seal_hash": "acbabc4ca3f0ceed23dc40e8e0721ed6b3a049a2238f442b3cfb2fc7ea9c415a"
+}

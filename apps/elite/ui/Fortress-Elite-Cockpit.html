@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortress v1.4 Sovereign AI Governance Cockpit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-bg: #0a0e27;
+            --secondary-bg: #141829;
+            --accent-green: #00ff41;
+            --accent-amber: #ffaa00;
+            --accent-red: #ff2e42;
+            --accent-blue: #00d9ff;
+            --text-primary: #e0e6f0;
+            --text-secondary: #8a92b0;
+            --node-safe: #00ff41;
+            --node-danger: #ff2e42;
+            --border-color: #1e2749;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--primary-bg) 0%, #0f1535 100%);
+            color: var(--text-primary);
+            font-family: 'Monaco', 'Menlo', monospace;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .cockpit-container {
+            display: grid;
+            grid-template-columns: 280px 1fr 320px;
+            grid-template-rows: 80px 1fr 120px;
+            height: 100vh;
+            gap: 12px;
+            padding: 12px;
+        }
+
+        /* HEADER */
+        .header {
+            grid-column: 1 / 4;
+            background: rgba(20, 24, 41, 0.8);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-title {
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: var(--accent-green);
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+        }
+
+        .header-metrics {
+            display: flex;
+            gap: 30px;
+            font-size: 12px;
+        }
+
+        .metric {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .metric-value {
+            color: var(--accent-green);
+            font-weight: bold;
+            font-size: 14px;
+            text-shadow: 0 0 8px rgba(0, 255, 65, 0.2);
+        }
+
+        .metric-label {
+            color: var(--text-secondary);
+            font-size: 10px;
+            margin-top: 2px;
+        }
+
+        /* SIDEBAR - PARTICIPANTS */
+        .sidebar-participants {
+            grid-row: 2;
+            grid-column: 1;
+            background: rgba(20, 24, 41, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            overflow-y: auto;
+            backdrop-filter: blur(10px);
+        }
+
+        .sidebar-title {
+            font-size: 12px;
+            color: var(--accent-blue);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .participant {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            padding: 8px;
+            background: rgba(14, 18, 34, 0.5);
+            border-left: 3px solid var(--border-color);
+            border-radius: 4px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .participant:hover {
+            background: rgba(0, 255, 65, 0.08);
+            border-left-color: var(--accent-green);
+        }
+
+        .participant-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            border: 2px solid;
+            position: relative;
+        }
+
+        .participant.honest .participant-avatar {
+            background: rgba(0, 255, 65, 0.15);
+            border-color: var(--node-safe);
+            box-shadow: 0 0 8px rgba(0, 255, 65, 0.4);
+        }
+
+        .participant.voting .participant-avatar {
+            background: rgba(255, 170, 0, 0.15);
+            border-color: var(--accent-amber);
+            box-shadow: 0 0 8px rgba(255, 170, 0, 0.4);
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .participant-info {
+            flex: 1;
+        }
+
+        .participant-name {
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+
+        .participant-role {
+            font-size: 9px;
+            color: var(--text-secondary);
+        }
+
+        .participant-status {
+            font-size: 8px;
+            color: var(--node-safe);
+            margin-top: 2px;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            grid-row: 2;
+            grid-column: 2;
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            gap: 12px;
+        }
+
+        /* CONSENSUS VISUALIZATION */
+        .consensus-panel {
+            background: rgba(20, 24, 41, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+        }
+
+        .panel-title {
+            font-size: 12px;
+            color: var(--accent-blue);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .consensus-nodes {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex: 1;
+            position: relative;
+        }
+
+        .consensus-node {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border: 2px solid;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .consensus-node.honest {
+            background: rgba(0, 255, 65, 0.15);
+            border-color: var(--node-safe);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
+        }
+
+        .consensus-node.byzantine {
+            background: rgba(255, 46, 66, 0.15);
+            border-color: var(--node-danger);
+            box-shadow: 0 0 20px rgba(255, 46, 66, 0.3);
+        }
+
+        .consensus-node:hover {
+            transform: scale(1.15);
+        }
+
+        .node-label {
+            font-size: 11px;
+            position: absolute;
+            bottom: -25px;
+            white-space: nowrap;
+        }
+
+        .consensus-status {
+            margin-top: 20px;
+            padding: 12px;
+            background: rgba(0, 255, 65, 0.08);
+            border-left: 3px solid var(--accent-green);
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .status-label {
+            color: var(--text-secondary);
+            display: inline;
+        }
+
+        .status-value {
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        /* PROPOSALS PANEL */
+        .proposals-panel {
+            background: rgba(20, 24, 41, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-y: auto;
+            backdrop-filter: blur(10px);
+        }
+
+        .proposal-card {
+            background: rgba(14, 18, 34, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 12px;
+            transition: all 0.3s;
+        }
+
+        .proposal-card:hover {
+            background: rgba(0, 255, 65, 0.05);
+            border-color: var(--accent-green);
+        }
+
+        .proposal-id {
+            font-size: 10px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .proposal-action {
+            font-size: 12px;
+            color: var(--text-primary);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .proposal-votes {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .vote-bar {
+            flex: 1;
+            height: 20px;
+            background: rgba(50, 50, 50, 0.5);
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .vote-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));
+            transition: width 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .vote-label {
+            font-size: 9px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* LEDGER SIDEBAR */
+        .sidebar-ledger {
+            grid-row: 2;
+            grid-column: 3;
+            background: rgba(20, 24, 41, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            overflow-y: auto;
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ledger-entries {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .ledger-entry {
+            font-size: 9px;
+            color: var(--accent-green);
+            margin-bottom: 6px;
+            padding: 4px 6px;
+            background: rgba(0, 255, 65, 0.05);
+            border-left: 2px solid var(--accent-green);
+            border-radius: 2px;
+            font-family: 'Courier New', monospace;
+            line-height: 1.3;
+            opacity: 0;
+            animation: slideIn 0.5s ease-out forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .ledger-entry:nth-child(1) { animation-delay: 0s; }
+        .ledger-entry:nth-child(2) { animation-delay: 0.1s; }
+        .ledger-entry:nth-child(3) { animation-delay: 0.2s; }
+        .ledger-entry:nth-child(4) { animation-delay: 0.3s; }
+        .ledger-entry:nth-child(5) { animation-delay: 0.4s; }
+
+        /* FOOTER - CONSENSUS ROUND */
+        .footer {
+            grid-column: 1 / 4;
+            grid-row: 3;
+            background: rgba(20, 24, 41, 0.8);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            backdrop-filter: blur(10px);
+        }
+
+        .round-display {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .round-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .round-label {
+            font-size: 10px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .round-value {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--accent-green);
+            text-shadow: 0 0 8px rgba(0, 255, 65, 0.2);
+            margin-top: 2px;
+        }
+
+        .round-phase {
+            padding: 8px 16px;
+            background: rgba(0, 255, 65, 0.1);
+            border: 1px solid var(--accent-green);
+            border-radius: 4px;
+            font-size: 11px;
+            color: var(--accent-green);
+            font-weight: bold;
+            animation: breathe 2s infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .timestamp {
+            color: var(--text-secondary);
+            font-size: 10px;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-green);
+        }
+    </style>
+</head>
+<body>
+    <div class="cockpit-container">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="header-title">⬢ FORTRESS v1.4 SOVEREIGN AI GOVERNANCE COCKPIT</div>
+            <div class="header-metrics">
+                <div class="metric">
+                    <div class="metric-value">ONLINE</div>
+                    <div class="metric-label">System Status</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">4/5 HONEST</div>
+                    <div class="metric-label">Node Health</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">99.97%</div>
+                    <div class="metric-label">Uptime (30d)</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">SAFE</div>
+                    <div class="metric-label">Byzantine Status</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LEFT SIDEBAR - PARTICIPANTS -->
+        <div class="sidebar-participants">
+            <div class="sidebar-title">📊 Governance Board</div>
+            
+            <div class="participant honest">
+                <div class="participant-avatar">CEO</div>
+                <div class="participant-info">
+                    <div class="participant-name">Alex Chen</div>
+                    <div class="participant-role">Chief Executive</div>
+                    <div class="participant-status">✓ Connected</div>
+                </div>
+            </div>
+
+            <div class="participant honest">
+                <div class="participant-avatar">CTO</div>
+                <div class="participant-info">
+                    <div class="participant-name">Jordan Kim</div>
+                    <div class="participant-role">Chief Technology Officer</div>
+                    <div class="participant-status">✓ Connected</div>
+                </div>
+            </div>
+
+            <div class="participant voting">
+                <div class="participant-avatar">CFO</div>
+                <div class="participant-info">
+                    <div class="participant-name">Morgan Lewis</div>
+                    <div class="participant-role">Chief Financial Officer</div>
+                    <div class="participant-status">⟳ Voting</div>
+                </div>
+            </div>
+
+            <div class="participant honest">
+                <div class="participant-avatar">CRO</div>
+                <div class="participant-info">
+                    <div class="participant-name">Sarah Patel</div>
+                    <div class="participant-role">Chief Risk Officer</div>
+                    <div class="participant-status">✓ Connected</div>
+                </div>
+            </div>
+
+            <div class="participant honest">
+                <div class="participant-avatar">AUD</div>
+                <div class="participant-info">
+                    <div class="participant-name">External Auditor</div>
+                    <div class="participant-role">Compliance Board</div>
+                    <div class="participant-status">✓ Observed</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <!-- CONSENSUS VISUALIZATION -->
+            <div class="consensus-panel">
+                <div class="panel-title">🔗 HotStuff Consensus Spine (f < n/3)</div>
+                <div class="consensus-nodes">
+                    <div class="consensus-node honest">
+                        <div>Node 1</div>
+                        <div class="node-label">Honest</div>
+                    </div>
+                    <div class="consensus-node honest">
+                        <div>Node 2</div>
+                        <div class="node-label">Honest</div>
+                    </div>
+                    <div class="consensus-node honest">
+                        <div>Node 3</div>
+                        <div class="node-label">Honest</div>
+                    </div>
+                    <div class="consensus-node honest">
+                        <div>Node 4</div>
+                        <div class="node-label">Honest</div>
+                    </div>
+                    <div class="consensus-node byzantine">
+                        <div>Node 5</div>
+                        <div class="node-label">Byzantine</div>
+                    </div>
+                </div>
+                <div class="consensus-status">
+                    <div class="status-label">Consensus Finality:</div>
+                    <div class="status-value">84ms</div> | Safety: ✓ Live | Liveness: ✓ Safe
+                </div>
+            </div>
+
+            <!-- PROPOSALS PANEL -->
+            <div class="proposals-panel">
+                <div class="panel-title">🗳️ Active Proposals & Votes</div>
+                
+                <div class="proposal-card">
+                    <div class="proposal-id">PROPOSAL #2847 • Initiated 2s ago</div>
+                    <div class="proposal-action">EXECUTE: Deploy Model v2.1-beta-01</div>
+                    <div class="proposal-votes">
+                        <div style="flex: 1;">
+                            <div class="vote-bar">
+                                <div class="vote-fill" style="width: 80%;">✓ 4/5</div>
+                            </div>
+                            <div class="vote-label">ACCEPT</div>
+                        </div>
+                        <div style="flex: 1;">
+                            <div class="vote-bar">
+                                <div class="vote-fill" style="width: 20%; background: var(--accent-amber);">✗ 1/5</div>
+                            </div>
+                            <div class="vote-label">ABSTAIN</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="proposal-card">
+                    <div class="proposal-id">PROPOSAL #2846 • Initiated 24s ago</div>
+                    <div class="proposal-action">AUTHORIZE: Query external API with governance seal</div>
+                    <div class="proposal-votes">
+                        <div style="flex: 1;">
+                            <div class="vote-bar">
+                                <div class="vote-fill" style="width: 100%; background: var(--node-safe);">✓ 5/5</div>
+                            </div>
+                            <div class="vote-label">APPROVED</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="proposal-card">
+                    <div class="proposal-id">PROPOSAL #2845 • Initiated 47s ago</div>
+                    <div class="proposal-action">GOVERNANCE: Rotate signer keys (emergency protocol)</div>
+                    <div class="proposal-votes">
+                        <div style="flex: 1;">
+                            <div class="vote-bar">
+                                <div class="vote-fill" style="width: 60%; background: var(--accent-blue);">⟳ 3/5</div>
+                            </div>
+                            <div class="vote-label">VOTING</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDEBAR - LEDGER -->
+        <div class="sidebar-ledger">
+            <div class="sidebar-title">📖 Immutable Ledger</div>
+            <div class="ledger-entries">
+                <div class="ledger-entry">✓ EXEC #2846 • 47ms ago<br/>qm7x9...k2p1 SEALED</div>
+                <div class="ledger-entry">✓ VOTE Morgan (CFO)<br/>APPROVE #2846 • 3s ago</div>
+                <div class="ledger-entry">✓ PROP #2846 submitted<br/>alex_chen.eth • 8s ago</div>
+                <div class="ledger-entry">✓ CONSENSUS finalized<br/>View: 847 • 12s ago</div>
+                <div class="ledger-entry">✓ Node 3 signed round<br/>hash: fn4k2...8x9p</div>
+            </div>
+            <div style="border-top: 1px solid var(--border-color); padding-top: 8px; margin-top: 8px;">
+                <div class="metric-label" style="text-align: center;">IPFS Pinned</div>
+                <div style="font-size: 8px; color: var(--text-secondary); text-align: center; margin-top: 4px;">
+                    QmX9kL2p7v4m8n3r6t9y2u5w0e...
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER - CONSENSUS ROUND -->
+        <div class="footer">
+            <div class="round-display">
+                <div class="round-item">
+                    <div class="round-label">Current Round</div>
+                    <div class="round-value">847</div>
+                </div>
+                <div class="round-item">
+                    <div class="round-label">Phase</div>
+                    <div class="round-phase">DECIDE</div>
+                </div>
+                <div class="round-item">
+                    <div class="round-label">Active Proposals</div>
+                    <div class="round-value">3</div>
+                </div>
+                <div class="round-item">
+                    <div class="round-label">Ledger Size</div>
+                    <div class="round-value">14.2 MB</div>
+                </div>
+            </div>
+            <div class="timestamp">Last consensus finality: 12:47:23 UTC • Next round: ~2.1s</div>
+        </div>
+    </div>
+
+    <script>
+        // Simulate real-time updates
+        setInterval(() => {
+            // Update ledger entries
+            const ledgerContainer = document.querySelector('.ledger-entries');
+            const newEntry = document.createElement('div');
+            newEntry.className = 'ledger-entry';
+            newEntry.innerHTML = `✓ Update • ${Math.random().toString(36).substr(2, 8)}`;
+            ledgerContainer.insertBefore(newEntry, ledgerContainer.firstChild);
+            if (ledgerContainer.children.length > 6) {
+                ledgerContainer.removeChild(ledgerContainer.lastChild);
+            }
+        }, 3000);
+
+        // Pulse node animation
+        setInterval(() => {
+            const nodes = document.querySelectorAll('.consensus-node');
+            nodes.forEach((node, idx) => {
+                if (idx < 4) {
+                    node.style.boxShadow = `0 0 ${20 + Math.sin(Date.now() / 500 + idx) * 10}px rgba(0, 255, 65, ${0.4 + Math.sin(Date.now() / 1000 + idx) * 0.2})`;
+                }
+            });
+        }, 50);
+
+        // Voting progress animation
+        setInterval(() => {
+            const voteBars = document.querySelectorAll('.vote-fill');
+            voteBars.forEach(bar => {
+                const currentWidth = parseFloat(bar.style.width);
+                if (currentWidth < 100) {
+                    bar.style.width = (currentWidth + Math.random() * 3) + '%';
+                }
+            });
+        }, 1000);
+
+        console.log('🔐 Fortress v1.4 Governance Cockpit Initialized');
+        console.log('⬢ System Status: ONLINE | Byzantine Tolerance: 1/5 | Consensus Speed: 84ms');
+    </script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+# Sovereign Sanctuary Elite Pack - Master Configuration
+# Zero-Drift Deterministic Deployment Config
+
+version: "1.0.0"
+pack_name: "Sovereign Sanctuary Elite Automation Pack"
+execution_doctrine: "deterministic"
+
+# ═══════════════════════════════════════════════════════════════════
+# PROPERTY CONFIGURATION
+# ═══════════════════════════════════════════════════════════════════
+property:
+  name: "Vera de Erques Sanctuary"
+  location: "Tenerife, Canary Islands"
+  total_area_m2: 5900
+  
+  # Extracted from property meeting
+  referencia_catastral: "${REF_CATASTRAL}"  # 14-digit code
+  suelo_classification: "${SUELO_CLASS}"    # rústico común/común/protegido
+  monthly_opex_eur: "${MONTHLY_OPEX}"
+  cedula_habitabilidad: "${CEDULA_STATUS}"  # Yes/No
+  permit_issues: []
+  
+  structures:
+    house_a:
+      designation: "R&D Lab"
+      area_m2: null  # To be filled
+    house_b:
+      designation: "Admin/Governance"
+      area_m2: null  # To be filled
+
+# ═══════════════════════════════════════════════════════════════════
+# FUNDING PIPELINE CONFIGURATION
+# ═══════════════════════════════════════════════════════════════════
+funding_pipeline:
+  base_name: "Sanctuary Operations Q1 2026"
+  
+  grants:
+    - id: "nsf-sbir-2026"
+      name: "NSF SBIR"
+      funder: "NSF"
+      amount_eur: 250000
+      deadline: "2026-02-07"
+      status: "Drafting"
+      owner: "Andy"
+      priority: 1
+      
+    - id: "mozilla-ai-2026"
+      name: "Mozilla AI & Society"
+      funder: "Mozilla"
+      amount_eur: 100000
+      deadline: "2026-01-30"
+      status: "Submitted"
+      owner: "Steven"
+      priority: 2
+      
+    - id: "innovateuk-2026"
+      name: "InnovateUK Place-Based"
+      funder: "InnovateUK"
+      amount_eur: 150000
+      deadline: "2026-03-15"
+      status: "Research"
+      owner: "Phil"
+      priority: 3
+
+# ═══════════════════════════════════════════════════════════════════
+# RUNWAY CONFIGURATION
+# ═══════════════════════════════════════════════════════════════════
+runway:
+  starting_balance_eur: 37000
+  weekly_burn_rate_eur: 11500
+  critical_threshold_eur: 10000
+  
+  projections:
+    - week: "W1 Feb1"
+      cash_in: 0
+      cash_out: 12000
+    - week: "W2 Feb8"
+      cash_in: 0
+      cash_out: 11000
+    - week: "W3 Feb15"
+      cash_in: 25000  # Projected
+      cash_out: 11000
+    - week: "W4 Feb22"
+      cash_in: 0
+      cash_out: 11000
+
+# ═══════════════════════════════════════════════════════════════════
+# AUTOMATION TRIGGERS
+# ═══════════════════════════════════════════════════════════════════
+automations:
+  daily_sprint:
+    enabled: true
+    trigger_time: "09:00"
+    timezone: "Atlantic/Canary"
+    
+  deadline_alerts:
+    enabled: true
+    warning_days: [7, 3, 1]
+    
+  runway_alerts:
+    enabled: true
+    threshold_weeks: 2
+    
+  urbanismo_tracker:
+    enabled: true
+    check_interval_days: 3
+
+# ═══════════════════════════════════════════════════════════════════
+# DECISION MATRIX STATES
+# ═══════════════════════════════════════════════════════════════════
+decision_matrix:
+  states:
+    green:
+      condition: "HQ_APPROVED"
+      actions:
+        - "sede_social_registration"
+        - "full_daemon_deployment"
+        - "grant_facility_confirmation"
+        
+    amber:
+      condition: "CONDITIONS_REQUIRED"
+      actions:
+        - "price_renegotiation"
+        - "use_adaptation_planning"
+        - "conditional_grant_language"
+        
+    red:
+      condition: "RURAL_PROHIBITED"
+      actions:
+        - "adeje_urban_lease_search"
+        - "finca_residential_only"
+        - "grant_pivot_narratives"
+
+# ═══════════════════════════════════════════════════════════════════
+# INTEGRATIONS
+# ═══════════════════════════════════════════════════════════════════
+integrations:
+  airtable:
+    enabled: true
+    base_id: "${AIRTABLE_BASE_ID}"
+    api_key: "${AIRTABLE_API_KEY}"
+    
+  notion:
+    enabled: true
+    workspace_id: "${NOTION_WORKSPACE_ID}"
+    api_key: "${NOTION_API_KEY}"
+    
+  zapier:
+    enabled: true
+    webhook_url: "${ZAPIER_WEBHOOK_URL}"
+    
+  slack:
+    enabled: false
+    webhook_url: "${SLACK_WEBHOOK_URL}"
+
+# ═══════════════════════════════════════════════════════════════════
+# TEAM CONFIGURATION
+# ═══════════════════════════════════════════════════════════════════
+team:
+  members:
+    - name: "Andy"
+      role: "Lead"
+      permissions: ["editor", "admin"]
+    - name: "Steven"
+      role: "Operations"
+      permissions: ["editor"]
+    - name: "Phil"
+      role: "Research"
+      permissions: ["editor"]

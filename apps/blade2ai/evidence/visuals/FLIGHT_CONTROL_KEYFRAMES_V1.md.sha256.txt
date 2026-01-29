@@ -1,0 +1,5 @@
+de3630f92ada10529a2bc0f53371e92ed877575f95344c0e71fef49c2cbb4ef0  evidence/visuals/FLIGHT_CONTROL_KEYFRAMES_V1.md
+bytes: 1493
+timestamp_utc: 2025-12-25T01:09:55Z
+git_state: clean
+git_head: dfcae6f2c7f6aca05f7c7c59191d7c04fc040dc4

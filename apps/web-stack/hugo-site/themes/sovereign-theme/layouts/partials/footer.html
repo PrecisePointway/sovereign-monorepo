@@ -1,0 +1,25 @@
+<!-- Gesture webhook integration -->
+{{ if .Site.Params.manusBridgeEnabled }}
+<script>
+    // Sovereign Elite OS - Gesture Status Indicator
+    (function() {
+        const statusEndpoint = '{{ .Site.Params.webhookEndpoint | default "/api/gesture" }}/status';
+        
+        async function checkStatus() {
+            try {
+                const response = await fetch(statusEndpoint);
+                if (response.ok) {
+                    document.querySelector('.status-dot').style.background = '#00ff88';
+                } else {
+                    document.querySelector('.status-dot').style.background = '#ff4444';
+                }
+            } catch (e) {
+                // Offline or unreachable - expected for static sites
+            }
+        }
+        
+        // Check status on load (optional)
+        // checkStatus();
+    })();
+</script>
+{{ end }}

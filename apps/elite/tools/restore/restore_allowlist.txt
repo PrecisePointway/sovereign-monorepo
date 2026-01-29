@@ -1,0 +1,47 @@
+# Restore Point Allowlist - Sovereign Sanctuary Elite
+# Lines ending with ? are optional (will be skipped if not found)
+# Comments start with #
+# Paths are relative to project root
+
+# ═══════════════════════════════════════════════════════════════════
+# CRITICAL - System State
+# ═══════════════════════════════════════════════════════════════════
+runtime/state.json
+
+# ═══════════════════════════════════════════════════════════════════
+# CONFIGURATION
+# ═══════════════════════════════════════════════════════════════════
+config/swarm_config.json
+config/sanctuary_config.yaml?
+
+# ═══════════════════════════════════════════════════════════════════
+# EVIDENCE (Critical for Audit Trail)
+# ═══════════════════════════════════════════════════════════════════
+evidence/ledger.jsonl?
+evidence/SITREP.md?
+evidence/learn_db.jsonl?
+
+# ═══════════════════════════════════════════════════════════════════
+# CORE CODE
+# ═══════════════════════════════════════════════════════════════════
+core/daemon.py
+core/models.py
+
+# ═══════════════════════════════════════════════════════════════════
+# TOOLS
+# ═══════════════════════════════════════════════════════════════════
+tools/self_heal_monitor.py
+tools/flight_control_daemon.py
+
+# ═══════════════════════════════════════════════════════════════════
+# AGENTS
+# ═══════════════════════════════════════════════════════════════════
+agents/verified-agent-elite.ts?
+agents/model_mesh_router.py?
+
+# ═══════════════════════════════════════════════════════════════════
+# PROJECT FILES
+# ═══════════════════════════════════════════════════════════════════
+pyproject.toml?
+package.json?
+README.md?

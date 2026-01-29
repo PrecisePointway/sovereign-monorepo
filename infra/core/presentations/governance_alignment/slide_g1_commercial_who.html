@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Season 3 Revenue</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;600&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #f0f0f0; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            display: grid;
+            grid-template-rows: 160px 1fr;
+        }
+
+        /* Grid Lines */
+        .grid-line-horizontal {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 160px;
+            height: 2px;
+            background-color: #000000;
+            z-index: 10;
+        }
+        
+        .grid-line-vertical {
+            position: absolute;
+            top: 160px;
+            bottom: 0;
+            left: 55%;
+            width: 1px;
+            background-color: #E0E0E0;
+            z-index: 10;
+        }
+
+        /* Header Section */
+        .header-section {
+            padding: 40px 60px; /* keep upper padding for title consistency */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .role-tag {
+            font-family: 'Roboto Mono', monospace;
+            color: #0040FF;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .role-tag::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            border: 1px solid #0040FF; /* Hollow square for Role Lens */
+            margin-right: 8px;
+        }
+
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 48px;
+            line-height: 1.1;
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        /* Content Section */
+        .content-split {
+            display: grid;
+            grid-template-columns: 55% 45%;
+            height: 100%;
+        }
+
+        .column {
+            padding: 30px 40px; /* reduced inner padding to save vertical space */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-label {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 18px; /* tightened spacing */
+            text-transform: uppercase;
+            border-bottom: 1px solid #E0E0E0;
+            padding-bottom: 8px;
+            width: fit-content;
+        }
+
+        /* Product List */
+        .product-item {
+            margin-bottom: 18px; /* tightened spacing */
+            border-left: 4px solid #0040FF;
+            padding-left: 20px;
+        }
+
+        .product-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            color: #000000;
+            margin-bottom: 5px;
+        }
+
+        .product-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            color: #333333;
+            line-height: 1.4;
+        }
+
+        /* Market/Visuals */
+        .market-info {
+            margin-bottom: 18px;
+        }
+
+        .market-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .market-list {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            color: #333333;
+            line-height: 1.5;
+        }
+
+        .visual-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 12px; /* slightly reduced gap */
+            margin-top: auto;
+        }
+
+        .image-container {
+            width: 100%;
+            height: 110px; /* reduced height to save vertical space */
+            border: 1px solid #E0E0E0;
+            background: white;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .footer-msg {
+            margin-top: 12px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            color: #0040FF;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- Grid Lines -->
+        <div class="grid-line-horizontal"></div>
+        <div class="grid-line-vertical"></div>
+
+        <!-- Header -->
+        <div class="header-section">
+            <div class="role-tag">Gordon // Commercial Lens</div>
+            <h2>Season 3 Revenue:<br>Bolt-On Modules &amp; Licensing</h2>
+        </div>
+
+        <!-- Content -->
+        <div class="content-split">
+            <!-- Left: The Products -->
+            <div class="column">
+                <div class="section-label">Ready to Deploy</div>
+                
+                <div class="product-item">
+                    <div class="product-name">CI/CD Alert Router</div>
+                    <div class="product-desc">
+                        Autonomous monitoring, parsing, and routing of pipeline failures to Fortress Elite Cockpit.
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-name">Evidence Snapshot Trigger</div>
+                    <div class="product-desc">
+                        Event-driven, cryptographically attested snapshots for compliance and legal holds.
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-name">Gmail Autonomous Agent</div>
+                    <div class="product-desc">
+                        Core utility enabling search, read, and write operations for workflow automation.
+                    </div>
+                </div>
+
+                <div class="footer-msg">
+                    The products are built.<br>The runway is clean.
+                </div>
+            </div>
+
+            <!-- Right: The Market -->
+            <div class="column">
+                <div class="section-label">Target Market</div>
+                
+                <div class="market-info">
+                    <div class="market-title">Who Pays?</div>
+                    <div class="market-list">
+                        Institutions • Enterprises • Governments • Integrators
+                    </div>
+                </div>
+
+                <div class="market-info">
+                    <div class="market-title">What They Buy</div>
+                    <div class="market-list">
+                        Risk Reduction • Operational Insulation • Scale
+                    </div>
+                </div>
+
+                <div class="visual-stack">
+                    <div class="image-container">
+                        <img src="/home/ubuntu/upload/search_images/EUPq23Zkohgk.png" alt="Dashboard Metric">
+                    </div>
+                    <div class="image-container">
+                        <img src="/home/ubuntu/upload/search_images/z8uMpYMyv1vh.png" alt="System Health">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

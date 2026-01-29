@@ -1,0 +1,60 @@
+baseURL = 'https://sovereignsanctuarysystems.co.uk/'
+languageCode = 'en-gb'
+title = 'Sovereign Sanctuary Systems'
+theme = 'sovereign-theme'
+
+[params]
+  description = 'Sovereign Infrastructure for Elite Operations'
+  author = 'Architect'
+  tagline = 'Zero-Dependency. Deterministic. Auditable.'
+  
+  # Gesture integration
+  manusBridgeEnabled = true
+  webhookEndpoint = '/api/gesture'
+  
+  # Branding
+  logo = '/images/logo.svg'
+  favicon = '/images/favicon.ico'
+
+[menu]
+  [[menu.main]]
+    name = 'Home'
+    url = '/'
+    weight = 1
+  [[menu.main]]
+    name = 'About'
+    url = '/about/'
+    weight = 2
+  [[menu.main]]
+    name = 'Services'
+    url = '/services/'
+    weight = 3
+  [[menu.main]]
+    name = 'Documentation'
+    url = '/docs/'
+    weight = 4
+  [[menu.main]]
+    name = 'Contact'
+    url = '/contact/'
+    weight = 5
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    style = 'monokai'
+    lineNos = true
+
+[outputs]
+  home = ['HTML', 'RSS', 'JSON']
+  section = ['HTML', 'RSS']
+  taxonomy = ['HTML']
+  term = ['HTML']
+
+[build]
+  writeStats = true
+
+[security]
+  [security.funcs]
+    getenv = ['^HUGO_', '^SOVEREIGN_']

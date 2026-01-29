@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operational Reality</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;600&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #f0f0f0; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            display: grid;
+            grid-template-rows: 160px 1fr;
+        }
+
+        /* Grid Lines */
+        .grid-line-horizontal {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 160px;
+            height: 2px;
+            background-color: #000000;
+            z-index: 10;
+        }
+        
+        .grid-line-vertical-1 {
+            position: absolute;
+            top: 160px;
+            bottom: 0;
+            left: 33.33%;
+            width: 1px;
+            background-color: #E0E0E0;
+            z-index: 10;
+        }
+        
+        .grid-line-vertical-2 {
+            position: absolute;
+            top: 160px;
+            bottom: 0;
+            left: 66.66%;
+            width: 1px;
+            background-color: #E0E0E0;
+            z-index: 10;
+        }
+
+        /* Header Section */
+        .header-section {
+            padding: 40px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .role-tag {
+            font-family: 'Roboto Mono', monospace;
+            color: #666666;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .role-tag::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            background-color: #666666;
+            margin-right: 8px;
+        }
+
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 48px;
+            line-height: 1.1;
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        /* Content Section */
+        .status-board {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            height: 100%;
+        }
+
+        .status-col {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .col-header {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-ready { background-color: #0040FF; }
+        .dot-hardening { border: 2px solid #000000; }
+        .dot-dependency { background-color: #E0E0E0; }
+
+        .item-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .status-item {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            color: #333333;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #F0F0F0;
+        }
+
+        .item-name {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .item-desc {
+            font-size: 14px;
+            color: #666666;
+            line-height: 1.4;
+        }
+
+        /* Footer Message */
+        .footer-msg {
+            position: absolute;
+            bottom: 40px;
+            right: 60px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            color: #000000;
+            text-align: right;
+            background-color: #FFFFFF;
+            padding: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- Grid Lines -->
+        <div class="grid-line-horizontal"></div>
+        <div class="grid-line-vertical-1"></div>
+        <div class="grid-line-vertical-2"></div>
+
+        <!-- Header -->
+        <div class="header-section">
+            <div class="role-tag">Steven // Operational Lens</div>
+            <h2>Operational Reality:<br>Honest Assessment</h2>
+        </div>
+
+        <!-- Content -->
+        <div class="status-board">
+            <!-- Col 1: Production Ready -->
+            <div class="status-col">
+                <div class="col-header">
+                    <div class="status-dot dot-ready"></div>
+                    Production Ready
+                </div>
+                <div class="item-list">
+                    <div class="status-item">
+                        <span class="item-name">Core Evidence Engine</span>
+                        <span class="item-desc">Cryptographic ledger and snapshot architecture fully operational.</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="item-name">Gmail Autonomous Agent</span>
+                        <span class="item-desc">Search, read, and write capabilities verified.</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="item-name">Portal Infrastructure</span>
+                        <span class="item-desc">SiteGround + Drive read-only distribution layer.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Col 2: Requires Hardening -->
+            <div class="status-col">
+                <div class="col-header">
+                    <div class="status-dot dot-hardening"></div>
+                    Requires Hardening
+                </div>
+                <div class="item-list">
+                    <div class="status-item">
+                        <span class="item-name">CI/CD Alert Router</span>
+                        <span class="item-desc">Full integration with Fortress Elite Cockpit webhook needed.</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="item-name">Evidence Snapshot Trigger</span>
+                        <span class="item-desc">Event-driven logic for external legal holds needs stress testing.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Col 3: Known Dependencies -->
+            <div class="status-col">
+                <div class="col-header">
+                    <div class="status-dot dot-dependency"></div>
+                    Known Dependencies
+                </div>
+                <div class="item-list">
+                    <div class="status-item">
+                        <span class="item-name">External MCP Connectors</span>
+                        <span class="item-desc">Reliance on Gmail API availability and rate limits.</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="item-name">GitHub Token Permissions</span>
+                        <span class="item-desc">Currently read-only; write access needed for full automation.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Message -->
+        <div class="footer-msg">
+            We know exactly where we are.<br>No surprises.
+        </div>
+    </div>
+</body>
+</html>

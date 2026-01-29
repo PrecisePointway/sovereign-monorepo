@@ -1,0 +1,116 @@
+# =============================================================================
+# SOVEREIGN ELITE OS — Docker Compose Stack
+# =============================================================================
+# Complete deployment stack with FastAPI app and supporting services
+# =============================================================================
+
+version: '3.8'
+
+services:
+  # ===========================================================================
+  # Sovereign Elite OS - FastAPI Application
+  # ===========================================================================
+  sovereign-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sovereign-app
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - WEBHOOK_SECRET=${WEBHOOK_SECRET:-change-me-in-production}
+      - MANUS_BRIDGE_URL=${MANUS_BRIDGE_URL:-ws://manus-bridge:8765}
+      - LOG_DIR=/var/log/sovereign_app
+      - CONTENT_DIR=/app/content
+    volumes:
+      - sovereign-logs:/var/log/sovereign_app
+      - sovereign-content:/app/content
+    networks:
+      - sovereign-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.sovereign.rule=Host(`app.sovereignsanctuarysystems.co.uk`)"
+      - "traefik.http.routers.sovereign.tls=true"
+      - "traefik.http.routers.sovereign.tls.certresolver=letsencrypt"
+
+  # ===========================================================================
+  # Manus Bridge (Gesture Router)
+  # ===========================================================================
+  manus-bridge:
+    image: python:3.11-slim
+    container_name: manus-bridge
+    restart: unless-stopped
+    working_dir: /app
+    command: python manus_bridge.py
+    volumes:
+      - ../manus_gesture_protocol:/app:ro
+      - manus-logs:/var/log/manus_gesture
+    networks:
+      - sovereign-net
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  # ===========================================================================
+  # Nginx (Static Site Server)
+  # ===========================================================================
+  nginx:
+    image: nginx:alpine
+    container_name: sovereign-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ../hugo-site/public:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ssl-certs:/etc/nginx/ssl:ro
+    networks:
+      - sovereign-net
+    depends_on:
+      - sovereign-app
+
+  # ===========================================================================
+  # Traefik (Reverse Proxy - Optional)
+  # ===========================================================================
+  # traefik:
+  #   image: traefik:v2.10
+  #   container_name: traefik
+  #   restart: unless-stopped
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock:ro
+  #     - traefik-certs:/letsencrypt
+  #   command:
+  #     - "--providers.docker=true"
+  #     - "--entrypoints.web.address=:80"
+  #     - "--entrypoints.websecure.address=:443"
+  #     - "--certificatesresolvers.letsencrypt.acme.email=admin@sovereignsanctuarysystems.co.uk"
+  #     - "--certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json"
+  #     - "--certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web"
+  #   networks:
+  #     - sovereign-net
+
+# =============================================================================
+# Networks
+# =============================================================================
+networks:
+  sovereign-net:
+    driver: bridge
+
+# =============================================================================
+# Volumes
+# =============================================================================
+volumes:
+  sovereign-logs:
+  sovereign-content:
+  manus-logs:
+  ssl-certs:
+  # traefik-certs:

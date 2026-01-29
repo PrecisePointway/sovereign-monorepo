@@ -1,0 +1,36 @@
+{
+  "nodes": {
+    "PC1_blade": {
+      "ip": "100.94.217.81",
+      "ssh_port": 22,
+      "role": "primary",
+      "desc": "Primary Controller / Governance Node"
+    },
+    "PC2_blade": {
+      "ip": "100.77.189.96",
+      "ssh_port": 22,
+      "role": "worker",
+      "desc": "Compute Node (High Performance)"
+    },
+    "PC4_blade": {
+      "ip": "100.0.0.0",
+      "ssh_port": 22,
+      "role": "worker",
+      "desc": "Backup / Storage Node (Update IP)"
+    }
+  },
+  "thresholds": {
+    "cpu_percent_alert": 85,
+    "memory_percent_alert": 90,
+    "disk_percent_alert": 90,
+    "check_interval_seconds": 60,
+
+    "consecutive_failures_for_recovery": 3,
+    "ping_timeout_ms": 1000
+  },
+  "paths": {
+    "sitrep": "evidence/SITREP.md",
+    "sealer": "tools/seal_file.py",
+    "pc2_recovery_script": "scripts/ops/self_heal_pc2.ps1"
+  }
+}

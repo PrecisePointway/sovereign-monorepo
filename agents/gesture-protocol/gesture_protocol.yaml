@@ -1,0 +1,116 @@
+# ============================================================================
+# SOVEREIGN EXECUTION PROMPT: Manus Pro Gesture Protocol
+# ============================================================================
+# EXECUTION CONTEXT: Sovereign Elite OS – Gesture-Driven Command Interface
+# DEVICE: Manus Pro (Motion Capture Gloves)
+# ROLE: Sovereign Systems Architect
+# PURPOSE: Route live gestures into deterministic infrastructure commands
+# ============================================================================
+
+operator_profile:
+  role: Sovereign Systems Architect
+  control_surface: Multi-node 10GbE cluster
+  trust_model: Zero SaaS / On-premise / Deterministic execution
+  input_mode: Biometric + gesture (Manus Pro)
+  primary_interface: manus_bridge.py → FastAPI trigger → shell or internal API
+
+gesture_processing_policy:
+  mode: Real-time routing
+  debounce_ms: 250
+  repeat_protection: true
+  identity_enforced: true  # Reject signals unless gloves are paired and fingerprint verified
+  confidence_threshold: 0.85  # Minimum gesture recognition confidence
+
+command_map:
+  fist_hold:
+    action: generate_snapshot
+    description: "Trigger full system snapshot with cryptographic hash chain"
+    shell: "sh scripts/generate_snapshot.sh"
+    tags:
+      - evidence
+      - compliance
+      - freeze_state
+    priority: critical
+    reversible: false
+    requires_confirmation: false
+
+  two_finger_swipe_up:
+    action: trigger_airbyte_sync
+    description: "Manually sync pipeline via Airbyte connector set"
+    shell: "python3 scripts/airbyte_sync.py"
+    tags:
+      - data
+      - ingestion
+      - manual_override
+    priority: high
+    reversible: true
+    requires_confirmation: false
+
+  open_palm_hold:
+    action: open_dashboard
+    description: "Launch Metabase executive dashboard on secure endpoint"
+    shell: "sh scripts/open_dashboard.sh"
+    tags:
+      - visualization
+      - intel
+      - operator
+    priority: normal
+    reversible: true
+    requires_confirmation: false
+
+  thumb_circle:
+    action: send_alert
+    description: "Send compliance Slack alert (predefined P1 category)"
+    shell: "python3 scripts/slack_alert.py"
+    tags:
+      - compliance
+      - alert
+      - ops
+    priority: high
+    reversible: false
+    requires_confirmation: false
+
+  pinch_twist:
+    action: shutdown_sequence
+    description: "Initiate controlled service shutdown across defined nodes"
+    shell: "sh scripts/controlled_shutdown.sh"
+    tags:
+      - infra
+      - shutdown
+      - node_control
+    priority: critical
+    reversible: false
+    requires_confirmation: true  # Requires double-tap confirmation within 3s
+
+  double_tap:
+    action: gesture_acknowledgement
+    description: "Acknowledge alert or switch Metabase dashboard tab"
+    shell: "python3 scripts/metabase_control.py switch_tab"
+    tags:
+      - ack
+      - ui_control
+      - dashboard
+    priority: normal
+    reversible: true
+    requires_confirmation: false
+
+environment_security:
+  gloves_verified: true
+  biometric_hash: required
+  offline_mode_fallback: true
+  escalation_trigger: "if unverified input received → auto-log + freeze input layer"
+  session_timeout_minutes: 30
+  max_failed_auth_attempts: 3
+
+logging:
+  enabled: true
+  log_path: "/var/log/manus_gesture/"
+  hash_chain: true
+  retention_days: 90
+  include_biometric_metadata: false  # Privacy compliance
+
+metadata:
+  version: "1.0.0"
+  author: Architect
+  last_updated: "2026-01-25"
+  schema_version: "1.0"

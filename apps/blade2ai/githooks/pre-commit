@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+PY="${PYTHON:-python}"
+
+STAGED=$(git diff --cached --name-only --diff-filter=ACM)
+
+needs_seal=()
+for f in $STAGED; do
+  if [[ "$f" == evidence/visuals/*.mmd ]] || [[ "$f" == evidence/debates/*.md ]] || [[ "$f" == evidence/visuals/*.md ]]; then
+    needs_seal+=("$f")
+  fi
+done
+
+if [[ ${#needs_seal[@]} -eq 0 ]]; then
+  exit 0
+fi
+
+for f in "${needs_seal[@]}"; do
+  receipt="${f}.sha256.txt"
+  $PY tools/seal_file.py "$f" >/dev/null
+  git add "$receipt"
+done
+
+exit 0

@@ -1,0 +1,5 @@
+2aebc7503635296a453e93a3fb57309f4f86541f234434030a4f3cab4fa9e8c3  evidence/visuals/SWOT_SITREP_20251224.mmd
+bytes: 1216
+timestamp_utc: 2025-12-25T01:59:43Z
+git_state: dirty
+git_head: dfcae6f2c7f6aca05f7c7c59191d7c04fc040dc4

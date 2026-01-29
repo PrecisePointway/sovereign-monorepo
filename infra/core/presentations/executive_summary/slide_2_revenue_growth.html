@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revenue & Growth</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;600&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #f0f0f0; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            display: grid;
+            grid-template-rows: 160px 1fr;
+        }
+
+        /* Grid Lines */
+        .grid-line-horizontal {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 160px;
+            height: 2px;
+            background-color: #000000;
+            z-index: 10;
+        }
+        
+        .grid-line-vertical {
+            position: absolute;
+            top: 160px;
+            bottom: 0;
+            left: 25%;
+            width: 1px;
+            background-color: #E0E0E0;
+            z-index: 10;
+        }
+
+        /* Header Section */
+        .header-section {
+            padding: 40px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .exec-tag {
+            font-family: 'Roboto Mono', monospace;
+            color: #0040FF;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .exec-tag::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            background-color: #0040FF;
+            margin-right: 8px;
+        }
+
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 48px;
+            line-height: 1.1;
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        /* Content Section */
+        .revenue-bands {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px 60px;
+            gap: 30px;
+        }
+
+        .band {
+            display: grid;
+            grid-template-columns: 250px 1fr 150px;
+            align-items: center;
+            border-left: 4px solid #0040FF;
+            padding-left: 30px;
+            min-height: 100px;
+        }
+
+        .band-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            color: #000000;
+            text-transform: uppercase;
+        }
+
+        .band-content {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            color: #333333;
+            line-height: 1.5;
+            padding-right: 20px;
+        }
+
+        .band-visual {
+            height: 80px;
+            width: 120px;
+            border: 1px solid #E0E0E0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+        }
+
+        .band-visual img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        /* Footer Message */
+        .footer-msg {
+            position: absolute;
+            bottom: 40px;
+            right: 60px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            color: #0040FF;
+            text-align: right;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- Grid Lines -->
+        <div class="grid-line-horizontal"></div>
+        <div class="grid-line-vertical"></div>
+
+        <!-- Header -->
+        <div class="header-section">
+            <div class="exec-tag">Executive Summary // Slide 02</div>
+            <h2>Revenue: Season 3 Bolt-Ons &amp;<br>Licensing Opportunities</h2>
+        </div>
+
+        <!-- Content -->
+        <div class="revenue-bands">
+            <!-- Band 1: Bolt-Ons -->
+            <div class="band">
+                <div class="band-title">Bolt-On Modules</div>
+                <div class="band-content">
+                    <strong>Ready to Deploy:</strong> CI/CD Alert Router &amp; Evidence Snapshot Trigger.<br>
+                    High-value automation for operational insulation and compliance.
+                </div>
+                <div class="band-visual">
+                    <img src="/home/ubuntu/upload/search_images/3IvV1ixBjeaR.jpg" alt="CI/CD">
+                </div>
+            </div>
+
+            <!-- Band 2: Licensing -->
+            <div class="band">
+                <div class="band-title">IP Licensing</div>
+                <div class="band-content">
+                    <strong>Season 1:</strong> White-label documentation (High Margin).<br>
+                    <strong>Season 2:</strong> Source-available integrator licenses (Recurring).
+                </div>
+                <div class="band-visual" style="font-family: 'Roboto Mono'; font-size: 12px; color: #666;">
+                    IP ASSET
+                </div>
+            </div>
+
+            <!-- Band 3: Market -->
+            <div class="band">
+                <div class="band-title">Target Market</div>
+                <div class="band-content">
+                    <strong>Buyers:</strong> Institutions, Enterprises, Governments.<br>
+                    <strong>Value Prop:</strong> They pay for risk reduction, scale, and packaging.
+                </div>
+                <div class="band-visual" style="font-family: 'Roboto Mono'; font-size: 12px; color: #666;">
+                    BUYERS
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Message -->
+        <div class="footer-msg">
+            Clean revenue paths.<br>No compromise to the core.
+        </div>
+    </div>
+</body>
+</html>

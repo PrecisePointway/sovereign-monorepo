@@ -1,0 +1,122 @@
+[
+  {
+    "nombre": "Diagnóstico de Gobernanza",
+    "name": "Governance Diagnostic",
+    "proposito": "Mapear la autoridad de decisión y el riesgo en estructuras de gobernanza",
+    "purpose": "Map decision authority and risk across governance structures",
+    "aplica_a": ["Cooperativa", "Comunidad", "Municipal"],
+    "applies_to": ["Cooperative", "Community", "Municipal"],
+    "estado": "Activo",
+    "status": "Active",
+    "ultimo_uso": "2026-01-25",
+    "last_used": "2026-01-25"
+  },
+  {
+    "nombre": "Verificación Legal",
+    "name": "Legal Check",
+    "proposito": "Validar cumplimiento y señalar riesgos legales antes de actuar",
+    "purpose": "Validate compliance and flag legal risks before action",
+    "aplica_a": ["Todos"],
+    "applies_to": ["All"],
+    "estado": "Activo",
+    "status": "Active",
+    "ultimo_uso": "2026-01-27",
+    "last_used": "2026-01-27"
+  },
+  {
+    "nombre": "Conversor de Divisas",
+    "name": "FX Converter",
+    "proposito": "Convertir divisas con tasas en tiempo real para decisiones financieras",
+    "purpose": "Convert currencies with live rates for financial decisions",
+    "aplica_a": ["Empresa", "Personal"],
+    "applies_to": ["Enterprise", "Personal"],
+    "estado": "Activo",
+    "status": "Active",
+    "ultimo_uso": "2026-01-20",
+    "last_used": "2026-01-20"
+  },
+  {
+    "nombre": "Protocolo de Salud",
+    "name": "Health Protocol",
+    "proposito": "Verificación de fatiga y carga cognitiva antes de trabajo crítico",
+    "purpose": "Fatigue and cognitive load check before critical work",
+    "aplica_a": ["Personal"],
+    "applies_to": ["Personal"],
+    "estado": "Activo",
+    "status": "Active",
+    "ultimo_uso": "2026-01-26",
+    "last_used": "2026-01-26"
+  },
+  {
+    "nombre": "Generador de SITREP",
+    "name": "SITREP Generator",
+    "proposito": "Producir informes de situación a partir de datos operativos",
+    "purpose": "Produce situation reports from operational data",
+    "aplica_a": ["Cooperativa", "Empresa"],
+    "applies_to": ["Cooperative", "Enterprise"],
+    "estado": "Activo",
+    "status": "Active",
+    "ultimo_uso": "2026-01-27",
+    "last_used": "2026-01-27"
+  },
+  {
+    "nombre": "Sistema Creador TikTok",
+    "name": "TikTok Creator System",
+    "proposito": "Sistema completo para creación y publicación de contenido en TikTok",
+    "purpose": "Complete system for TikTok content creation and publishing",
+    "aplica_a": ["Personal", "Empresa"],
+    "applies_to": ["Personal", "Enterprise"],
+    "estado": "Activo",
+    "status": "Active",
+    "ultimo_uso": "2026-01-20",
+    "last_used": "2026-01-20"
+  },
+  {
+    "nombre": "Auditoría de Genealogía",
+    "name": "Genealogy Audit",
+    "proposito": "Rastrear y verificar linaje de datos y decisiones",
+    "purpose": "Track and verify data and decision lineage",
+    "aplica_a": ["Cooperativa", "Empresa"],
+    "applies_to": ["Cooperative", "Enterprise"],
+    "estado": "Activo",
+    "status": "Active",
+    "ultimo_uso": "2026-01-15",
+    "last_used": "2026-01-15"
+  },
+  {
+    "nombre": "Rastreador de Subvenciones",
+    "name": "Grant Tracker",
+    "proposito": "Seguimiento de solicitudes de subvenciones y financiación",
+    "purpose": "Track grant applications and funding status",
+    "aplica_a": ["Cooperativa", "Municipal"],
+    "applies_to": ["Cooperative", "Municipal"],
+    "estado": "Activo",
+    "status": "Active",
+    "ultimo_uso": "2026-01-22",
+    "last_used": "2026-01-22"
+  },
+  {
+    "nombre": "Transcriptor de Vídeo",
+    "name": "Video Transcriber",
+    "proposito": "Transcribir contenido de vídeo a texto para documentación",
+    "purpose": "Transcribe video content to text for documentation",
+    "aplica_a": ["Personal", "Empresa"],
+    "applies_to": ["Personal", "Enterprise"],
+    "estado": "Activo",
+    "status": "Active",
+    "ultimo_uso": "2026-01-18",
+    "last_used": "2026-01-18"
+  },
+  {
+    "nombre": "Promotor Suno",
+    "name": "Suno Promoter",
+    "proposito": "Gestionar y promocionar creaciones musicales de Suno AI",
+    "purpose": "Manage and promote Suno AI music creations",
+    "aplica_a": ["Personal"],
+    "applies_to": ["Personal"],
+    "estado": "Borrador",
+    "status": "Draft",
+    "ultimo_uso": null,
+    "last_used": null
+  }
+]

@@ -1,0 +1,49 @@
+{
+  "name": "sovereign-sanctuary-elite",
+  "version": "2.0.0",
+  "description": "Elite automation pack with AI agents, model mesh routing, and evidence-bound execution",
+  "main": "agents/verified-agent-elite.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch agents/verified-agent-elite.ts",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint . --ext .ts,.tsx",
+    "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
+    "agent:review": "tsx agents/verified-agent-elite.ts",
+    "agent:mesh": "tsx agents/model_mesh_router.ts"
+  },
+  "keywords": [
+    "automation",
+    "ai-agents",
+    "orchestration",
+    "self-healing",
+    "cryptographic-verification"
+  ],
+  "author": "Manus AI for Architect",
+  "license": "PROPRIETARY",
+  "dependencies": {
+    "ai": "^3.0.0",
+    "@ai-sdk/openai": "^0.0.50",
+    "zod": "^3.22.0",
+    "dotenv": "^16.3.0",
+    "express": "^4.18.0",
+    "better-sqlite3": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/better-sqlite3": "^7.6.0",
+    "typescript": "^5.3.0",
+    "tsx": "^4.0.0",
+    "vitest": "^1.0.0",
+    "@vitest/coverage-v8": "^1.0.0",
+    "eslint": "^8.50.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "prettier": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

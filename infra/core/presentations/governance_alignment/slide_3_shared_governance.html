@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Governance & Control</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;600&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #f0f0f0; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            display: grid;
+            grid-template-rows: 160px 1fr;
+        }
+
+        /* Grid Lines */
+        .grid-line-horizontal {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 160px;
+            height: 2px;
+            background-color: #000000;
+            z-index: 10;
+        }
+        
+        .grid-line-vertical {
+            position: absolute;
+            top: 160px;
+            bottom: 0;
+            left: 20%;
+            width: 1px;
+            background-color: #E0E0E0;
+            z-index: 10;
+        }
+
+        /* Header Section */
+        .header-section {
+            padding: 40px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .spine-tag {
+            font-family: 'Roboto Mono', monospace;
+            color: #0040FF;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .spine-tag::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            background-color: #0040FF;
+            margin-right: 8px;
+        }
+
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 48px;
+            line-height: 1.1;
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        /* Content Section */
+        .control-layers {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px 60px;
+            gap: 30px;
+        }
+
+        .layer {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            align-items: center;
+            border-left: 4px solid #0040FF;
+            padding-left: 30px;
+        }
+
+        .layer-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            color: #000000;
+            text-transform: uppercase;
+        }
+
+        .layer-content {
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            color: #333333;
+            line-height: 1.5;
+        }
+
+        .layer-meta {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 12px;
+            color: #666666;
+            margin-top: 5px;
+        }
+
+        /* Footer Message */
+        .footer-msg {
+            position: absolute;
+            bottom: 40px;
+            right: 60px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            color: #0040FF;
+            text-align: right;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- Grid Lines -->
+        <div class="grid-line-horizontal"></div>
+        <div class="grid-line-vertical"></div>
+
+        <!-- Header -->
+        <div class="header-section">
+            <div class="spine-tag">Shared Spine // Slide 03</div>
+            <h2>Governance &amp; Control:<br>Built for Growth</h2>
+        </div>
+
+        <!-- Content -->
+        <div class="control-layers">
+            <!-- Layer 1 -->
+            <div class="layer">
+                <div class="layer-title">Decision Authority</div>
+                <div>
+                    <div class="layer-content">
+                        Key architectural and ethical decisions require consensus. No single point of failure.
+                    </div>
+                    <div class="layer-meta">Mechanism: Multi-sig consensus</div>
+                </div>
+            </div>
+
+            <!-- Layer 2 -->
+            <div class="layer">
+                <div class="layer-title">Immutable Boundaries</div>
+                <div>
+                    <div class="layer-content">
+                        The core is locked. Changes are logged, hashed, and auditable.
+                    </div>
+                    <div class="layer-meta">Mechanism: Cryptographic ledger</div>
+                </div>
+            </div>
+
+            <!-- Layer 3 -->
+            <div class="layer">
+                <div class="layer-title">Drift Prevention</div>
+                <div>
+                    <div class="layer-content">
+                        The system is designed to resist scope creep. We grow deliberately, not accidentally.
+                    </div>
+                    <div class="layer-meta">Mechanism: Strict change control</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Message -->
+        <div class="footer-msg">
+            We have the controls in place<br>to scale safely.
+        </div>
+    </div>
+</body>
+</html>

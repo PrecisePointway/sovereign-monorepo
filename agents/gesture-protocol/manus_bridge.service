@@ -1,0 +1,60 @@
+# /etc/systemd/system/manus_bridge.service
+# ============================================================================
+# MANUS BRIDGE — Systemd Service Unit
+# ============================================================================
+# Sovereign Elite OS — Gesture-Driven Command Interface
+#
+# DEPLOYMENT:
+#   sudo cp manus_bridge.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable manus_bridge
+#   sudo systemctl start manus_bridge
+#
+# LOGS:
+#   journalctl -u manus_bridge -f
+# ============================================================================
+
+[Unit]
+Description=Manus Pro Gesture Router — Sovereign Elite OS
+Documentation=file:///opt/sovereign-os/docs/manus_bridge.md
+After=network.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=architect
+Group=architect
+WorkingDirectory=/opt/sovereign-os
+
+# Main executable
+ExecStart=/usr/bin/python3 manus_bridge.py --config gesture_protocol.yaml
+
+# Restart policy: fail-closed, but auto-recover
+Restart=on-failure
+RestartSec=5
+StartLimitIntervalSec=60
+StartLimitBurst=3
+
+# Environment
+Environment="PYTHONUNBUFFERED=1"
+Environment="MANUS_ENV=production"
+EnvironmentFile=-/opt/sovereign-os/.env
+
+# Security hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=read-only
+PrivateTmp=true
+ReadWritePaths=/var/log/manus_gesture
+
+# Resource limits
+MemoryMax=256M
+CPUQuota=50%
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=manus_bridge
+
+[Install]
+WantedBy=multi-user.target

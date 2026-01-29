@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Season 3 Entry Condition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;600&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #f0f0f0; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            display: grid;
+            grid-template-rows: 160px 1fr;
+        }
+
+        /* Grid Lines */
+        .grid-line-horizontal {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 160px;
+            height: 2px;
+            background-color: #000000;
+            z-index: 10;
+        }
+        
+        .grid-line-vertical {
+            position: absolute;
+            top: 160px;
+            bottom: 0;
+            left: 60%;
+            width: 1px;
+            background-color: #E0E0E0;
+            z-index: 10;
+        }
+
+        /* Header Section */
+        .header-section {
+            padding: 40px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .spine-tag {
+            font-family: 'Roboto Mono', monospace;
+            color: #0040FF;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .spine-tag::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            background-color: #0040FF;
+            margin-right: 8px;
+        }
+
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 48px;
+            line-height: 1.1;
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        /* Content Section */
+        .content-split {
+            display: grid;
+            grid-template-columns: 60% 40%;
+            height: 100%;
+        }
+
+        .rules-column {
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .rule-item {
+            border-left: 4px solid #000000;
+            padding-left: 30px;
+        }
+
+        .rule-item.highlight {
+            border-left-color: #0040FF;
+        }
+
+        .rule-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            color: #000000;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .rule-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            color: #333333;
+            line-height: 1.5;
+        }
+
+        .image-column {
+            background-color: #F9F9F9;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-container {
+            width: 100%;
+            height: 300px;
+            background: white;
+            border: 1px solid #E0E0E0;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .caption {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 12px;
+            color: #666666;
+            text-align: center;
+            max-width: 80%;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- Grid Lines -->
+        <div class="grid-line-horizontal"></div>
+        <div class="grid-line-vertical"></div>
+
+        <!-- Header -->
+        <div class="header-section">
+            <div class="spine-tag">Shared Spine // Slide 05</div>
+            <h2>Entry Condition:<br>Demand-Driven, Not Supply-Pushed</h2>
+        </div>
+
+        <!-- Content -->
+        <div class="content-split">
+            <!-- Left: Rules -->
+            <div class="rules-column">
+                <div class="rule-item">
+                    <div class="rule-title">Observe First, Build Nothing</div>
+                    <div class="rule-desc">
+                        Season 3 begins with capability assessment, not construction. We survey existing capabilities before creating new ones.
+                    </div>
+                </div>
+
+                <div class="rule-item">
+                    <div class="rule-title">Revenue on Request</div>
+                    <div class="rule-desc">
+                        Paid services activate only when a buyer explicitly requests deployment or support. We scale when the market asks.
+                    </div>
+                </div>
+
+                <div class="rule-item highlight">
+                    <div class="rule-title">Core Protection</div>
+                    <div class="rule-desc">
+                        Paid layers never touch the free core. Integrity is non-negotiable and cryptographically enforced.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Visual -->
+            <div class="image-column">
+                <div class="image-container">
+                    <img src="/home/ubuntu/upload/search_images/0jTOXJsqy56t.jpg" alt="Cryptographic Enforcement">
+                </div>
+                <div class="caption">
+                    VERIFIABLE GOVERNANCE:<br>
+                    The boundary between Free and Paid is immutable and audited.
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

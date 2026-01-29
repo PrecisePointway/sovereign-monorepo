@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What's Done vs. What's Next</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;600&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #f0f0f0; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            display: grid;
+            grid-template-rows: 160px 1fr 200px;
+        }
+
+        /* Grid Lines */
+        .grid-line-horizontal {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 160px;
+            height: 2px;
+            background-color: #000000;
+            z-index: 10;
+        }
+        
+        .grid-line-vertical {
+            position: absolute;
+            top: 160px;
+            bottom: 0;
+            left: 50%;
+            width: 1px;
+            background-color: #E0E0E0;
+            z-index: 10;
+        }
+
+        /* Header Section */
+        .header-section {
+            padding: 40px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .spine-tag {
+            font-family: 'Roboto Mono', monospace;
+            color: #0040FF;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .spine-tag::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            background-color: #0040FF;
+            margin-right: 8px;
+        }
+
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 48px;
+            line-height: 1.1;
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        /* Content Section */
+        .content-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 100%;
+        }
+
+        .column {
+            padding: 40px 60px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .col-header {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            text-transform: uppercase;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .col-s2 .col-header { border-bottom: 4px solid #000000; color: #000000; }
+        .col-s3 .col-header { border-bottom: 4px solid #0040FF; color: #0040FF; }
+
+        .item-list {
+            list-style: none;
+        }
+
+        .item-list li {
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            color: #333333;
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .col-s2 .item-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #000000;
+            font-weight: bold;
+        }
+
+        .col-s3 .item-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #0040FF;
+            font-weight: bold;
+        }
+
+        /* Image Section */
+        .image-section {
+            background-color: #F5F5F5;
+            display: flex;
+            align-items: center;
+            padding: 0 60px;
+            border-top: 1px solid #E0E0E0;
+            justify-content: space-between;
+        }
+
+        .image-wrapper {
+            height: 160px;
+            width: 400px;
+            background: white;
+            border: 1px solid #E0E0E0;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-wrapper img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .footer-msg {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            color: #000000;
+            text-align: right;
+            width: 500px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- Grid Lines -->
+        <div class="grid-line-horizontal"></div>
+        <div class="grid-line-vertical"></div>
+
+        <!-- Header -->
+        <div class="header-section">
+            <div class="spine-tag">Shared Spine // Slide 04</div>
+            <h2>What's Done vs. What's Next</h2>
+        </div>
+
+        <!-- Content -->
+        <div class="content-columns">
+            <!-- Season 2 -->
+            <div class="column col-s2">
+                <div class="col-header">
+                    <span>Season 2</span>
+                    <span style="font-size: 16px; opacity: 0.6;">COMPLETE</span>
+                </div>
+                <ul class="item-list">
+                    <li>Core truth engine</li>
+                    <li>Evidence snapshot architecture</li>
+                    <li>Gmail Autonomous Agent</li>
+                    <li>Portal infrastructure (SiteGround + Drive)</li>
+                    <li>Governance structure</li>
+                </ul>
+            </div>
+
+            <!-- Season 3 -->
+            <div class="column col-s3">
+                <div class="col-header">
+                    <span>Season 3</span>
+                    <span style="font-size: 16px; opacity: 0.6;">READY TO BUILD</span>
+                </div>
+                <ul class="item-list">
+                    <li>Paid bolt-on modules</li>
+                    <li>CI/CD Alert Router</li>
+                    <li>Evidence Snapshot Trigger</li>
+                    <li>Deployment adapters</li>
+                    <li>Integration support services</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Image Footer -->
+        <div class="image-section">
+            <div class="image-wrapper">
+                <img src="/home/ubuntu/upload/search_images/eSV5nV8y12qx.jpg" alt="Audit Trail">
+            </div>
+            <div class="footer-msg">
+                Nothing is half-finished.<br>
+                We're ready for the next phase.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

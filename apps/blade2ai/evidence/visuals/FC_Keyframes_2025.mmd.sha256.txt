@@ -1,0 +1,5 @@
+e74ac333b2f16f3174b5cf1444047528dc7ed46ceacb9c247d41bcdcd964a2b6  evidence/visuals/FC_Keyframes_2025.mmd
+bytes: 680
+timestamp_utc: 2025-12-25T01:59:43Z
+git_state: dirty
+git_head: dfcae6f2c7f6aca05f7c7c59191d7c04fc040dc4

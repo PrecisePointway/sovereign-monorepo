@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "module.schema.json",
+  "title": "Module Registry Entry",
+  "description": "Schema for a single module in the recall surface registry",
+  "type": "object",
+  "required": ["name", "purpose", "applies_to", "status", "last_used"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Short, boring, recallable name",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "purpose": {
+      "type": "string",
+      "description": "What it does in one line — no jargon",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "applies_to": {
+      "type": "array",
+      "description": "Contexts where this module is relevant",
+      "items": {
+        "type": "string",
+        "enum": ["Cooperative", "Community", "Municipal", "Personal", "Enterprise", "All"]
+      },
+      "minItems": 1
+    },
+    "status": {
+      "type": "string",
+      "description": "Current lifecycle state",
+      "enum": ["Draft", "Active", "Parked", "Deprecated"]
+    },
+    "last_used": {
+      "type": ["string", "null"],
+      "description": "ISO 8601 date of last use, or null if never used",
+      "format": "date"
+    }
+  },
+  "additionalProperties": false
+}

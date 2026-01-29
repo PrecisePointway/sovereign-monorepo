@@ -1,0 +1,48 @@
+# Sovereign Sanctuary Elite - Docker Compose
+# Development and testing environment
+
+version: "3.9"
+
+services:
+  sanctuary:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sovereign-sanctuary
+    restart: unless-stopped
+    volumes:
+      - ./runtime:/home/sanctuary/app/runtime
+      - ./evidence:/home/sanctuary/app/evidence
+      - ./RESTORE_POINTS:/home/sanctuary/app/RESTORE_POINTS
+      - ./EVIDENCE_SNAPSHOTS:/home/sanctuary/app/EVIDENCE_SNAPSHOTS
+    environment:
+      - SANCTUARY_ENV=development
+      - LOG_LEVEL=INFO
+    healthcheck:
+      test: ["CMD", "python", "tools/safety/safety_guardrail_check.py"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - sanctuary-net
+
+  # Optional: File watcher for development
+  watcher:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sanctuary-watcher
+    command: python tools/flight_control_daemon.py --watch-dir /home/sanctuary/app
+    volumes:
+      - ./:/home/sanctuary/app
+    depends_on:
+      - sanctuary
+    networks:
+      - sanctuary-net
+    profiles:
+      - dev
+
+networks:
+  sanctuary-net:
+    driver: bridge

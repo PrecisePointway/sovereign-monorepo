@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Monetisation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;600&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #f0f0f0; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            display: grid;
+            grid-template-rows: 160px 1fr;
+        }
+
+        /* Grid Lines */
+        .grid-line-horizontal {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 160px;
+            height: 2px;
+            background-color: #000000;
+            z-index: 10;
+        }
+        
+        .grid-line-vertical-1 {
+            position: absolute;
+            top: 160px;
+            bottom: 0;
+            left: 33.33%;
+            width: 1px;
+            background-color: #E0E0E0;
+            z-index: 10;
+        }
+        
+        .grid-line-vertical-2 {
+            position: absolute;
+            top: 160px;
+            bottom: 0;
+            left: 66.66%;
+            width: 1px;
+            background-color: #E0E0E0;
+            z-index: 10;
+        }
+
+        /* Header Section */
+        .header-section {
+            padding: 40px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .lens-tag {
+            font-family: 'Roboto Mono', monospace;
+            color: #0040FF;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .lens-tag::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            background-color: #0040FF;
+            margin-right: 8px;
+        }
+
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 48px;
+            line-height: 1.1;
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        /* Content Section */
+        .content-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            height: 100%;
+        }
+
+        .column {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .col-header {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            text-transform: uppercase;
+            border-bottom: 4px solid #0040FF;
+        }
+
+        .col-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+        .projection-box {
+            background-color: #F5F5F5;
+            padding: 15px;
+            margin-top: auto;
+            border-left: 2px solid #0040FF;
+        }
+
+        .projection-label {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 10px;
+            color: #666666;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .projection-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            color: #000000;
+            font-weight: bold;
+        }
+
+        /* Special Style for Column 3 (Constraints) */
+        .column-dark {
+            background-color: #000000;
+            color: #FFFFFF;
+        }
+
+        .column-dark .col-header {
+            color: #FFFFFF;
+            border-bottom-color: #0040FF;
+        }
+
+        .column-dark .col-text {
+            color: #CCCCCC;
+        }
+        
+        .column-dark ul {
+            list-style: none;
+        }
+        
+        .column-dark li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .column-dark li::before {
+            content: '×';
+            font-family: 'Space Grotesk', sans-serif;
+            position: absolute;
+            left: 0;
+            color: #0040FF;
+            font-weight: bold;
+            font-size: 20px;
+            line-height: 1;
+        }
+
+        .footer-msg {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 12px;
+            color: #0040FF;
+            text-transform: uppercase;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- Grid Lines -->
+        <div class="grid-line-horizontal"></div>
+        <div class="grid-line-vertical-1"></div>
+        <div class="grid-line-vertical-2"></div>
+
+        <!-- Header -->
+        <div class="header-section">
+            <div class="lens-tag">Gordon // Commercial Lens</div>
+            <h2>IP Monetisation:<br>Licensing the Foundation</h2>
+        </div>
+
+        <!-- Content -->
+        <div class="content-columns">
+            <!-- Column 1: Season 1 IP -->
+            <div class="column">
+                <div class="col-header">Season 1 IP<br><span style="font-size: 16px; font-weight: 400;">Conceptual Framework</span></div>
+                <div class="col-text">
+                    <strong>Model:</strong> White-label or co-branded documentation & methodology.<br><br>
+                    Establishes credibility and generates early revenue without touching the core system.
+                </div>
+                <div class="projection-box">
+                    <div class="projection-label">Projection (Year 1)</div>
+                    <div class="projection-value">2-5 Enterprise Licenses</div>
+                    <div class="projection-label" style="margin-top: 5px;">Profile</div>
+                    <div class="projection-value">Low Vol / High Margin</div>
+                </div>
+            </div>
+
+            <!-- Column 2: Season 2 IP -->
+            <div class="column">
+                <div class="col-header">Season 2 IP<br><span style="font-size: 16px; font-weight: 400;">Operational System</span></div>
+                <div class="col-text">
+                    <strong>Model:</strong> Source-available license for the proof layer.<br><br>
+                    Allows third parties (Integrators) to build on the system while protecting core IP.
+                </div>
+                <div class="projection-box">
+                    <div class="projection-label">Projection (Year 1-2)</div>
+                    <div class="projection-value">5-10 Integrator Licenses</div>
+                    <div class="projection-label" style="margin-top: 5px;">Profile</div>
+                    <div class="projection-value">Med Vol / Recurring</div>
+                </div>
+            </div>
+
+            <!-- Column 3: Constraints -->
+            <div class="column column-dark">
+                <div class="col-header">What We Will<br>NOT Sell</div>
+                <div class="col-text">
+                    <ul>
+                        <li>No IP grabs or exclusive licensing.</li>
+                        <li>No black-box deployments.</li>
+                        <li>No pay-to-alter governance.</li>
+                    </ul>
+                    <br>
+                    <span style="color: #0040FF; font-family: 'Roboto Mono'; font-size: 12px;">IMPACT</span><br>
+                    These constraints protect long-term value and reputation.
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-msg">Clean revenue paths. No compromise.</div>
+    </div>
+</body>
+</html>

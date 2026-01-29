@@ -1,0 +1,60 @@
+# Module Registry Pipeline Configuration
+# =======================================
+# Dev → Prod promotion with validation gates
+
+pipeline:
+  name: module-registry-pipeline
+  version: "1.0.0"
+
+environments:
+  dev:
+    path: ./dev/modules.json
+    description: "Draft and experimental modules — safe to break"
+    auto_validate: true
+    allow_status: ["Draft", "Active", "Parked", "Deprecated"]
+
+  prod:
+    path: ./prod/modules.json
+    description: "Stable, validated modules — read by UI"
+    auto_validate: true
+    allow_status: ["Active", "Parked", "Deprecated"]
+    # Draft not allowed in prod — must be promoted
+
+gates:
+  dev_to_prod:
+    - name: schema_validation
+      description: "All entries must pass JSON schema"
+      required: true
+
+    - name: no_draft_in_prod
+      description: "Draft status not allowed in prod"
+      required: true
+
+    - name: unique_names
+      description: "No duplicate module names"
+      required: true
+
+    - name: hash_integrity
+      description: "SHA256 hash must match manifest"
+      required: true
+
+workflow:
+  # 1. Add/edit modules in dev
+  # 2. Run validate script
+  # 3. Run promote script (dev → prod)
+  # 4. Commit to Git
+  # 5. UI reads from prod only
+
+  commands:
+    validate: "./scripts/validate.py"
+    promote: "./scripts/promote.py"
+    diff: "./scripts/diff.py"
+    hash: "./scripts/hash.py"
+
+audit:
+  enabled: true
+  log_path: ./audit.log
+  track:
+    - promotions
+    - validation_failures
+    - schema_changes

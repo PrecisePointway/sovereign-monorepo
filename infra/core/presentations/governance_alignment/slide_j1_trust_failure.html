@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;600&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #f0f0f0; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            display: grid;
+            grid-template-rows: 160px 1fr 180px;
+        }
+
+        /* Grid Lines */
+        .grid-line-horizontal {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 160px;
+            height: 2px;
+            background-color: #000000;
+            z-index: 10;
+        }
+        
+        .grid-line-vertical-1 {
+            position: absolute;
+            top: 160px;
+            bottom: 180px;
+            left: 33.33%;
+            width: 1px;
+            background-color: #E0E0E0;
+            z-index: 10;
+        }
+        
+        .grid-line-vertical-2 {
+            position: absolute;
+            top: 160px;
+            bottom: 180px;
+            left: 66.66%;
+            width: 1px;
+            background-color: #E0E0E0;
+            z-index: 10;
+        }
+
+        /* Header Section */
+        .header-section {
+            padding: 40px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .role-tag {
+            font-family: 'Roboto Mono', monospace;
+            color: #000000;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .role-tag::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            background-color: #000000;
+            margin-right: 8px;
+        }
+
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 48px;
+            line-height: 1.1;
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        /* Risk Section */
+        .risk-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            height: 100%;
+        }
+
+        .risk-col {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .risk-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #000000;
+            padding-bottom: 10px;
+        }
+
+        .risk-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            color: #333333;
+            line-height: 1.5;
+        }
+
+        .risk-meta {
+            margin-top: auto;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 12px;
+            color: #666666;
+            text-transform: uppercase;
+        }
+
+        /* Optionality Section (Bottom) */
+        .optionality-section {
+            background-color: #0040FF;
+            color: #FFFFFF;
+            padding: 0 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .opt-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 32px;
+            line-height: 1.2;
+        }
+
+        .opt-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            max-width: 500px;
+            line-height: 1.5;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- Grid Lines -->
+        <div class="grid-line-horizontal"></div>
+        <div class="grid-line-vertical-1"></div>
+        <div class="grid-line-vertical-2"></div>
+
+        <!-- Header -->
+        <div class="header-section">
+            <div class="role-tag">John // Board Lens</div>
+            <h2>Risk Profile:<br>Survivable Failures, Real Optionality</h2>
+        </div>
+
+        <!-- Risk Content -->
+        <div class="risk-columns">
+            <!-- Col 1: Adoption -->
+            <div class="risk-col">
+                <div class="risk-title">If Adoption Is Low</div>
+                <div class="risk-desc">
+                    The cost is sunk development time, not ongoing liability. The free model means no refunds, no broken contracts, and no churn risk.
+                </div>
+                <div class="risk-meta">Impact: Contained</div>
+            </div>
+
+            <!-- Col 2: Failure -->
+            <div class="risk-col">
+                <div class="risk-title">If Components Fail</div>
+                <div class="risk-desc">
+                    The system is modular. A failing part (like an alert router) can be isolated without bringing down the core evidence engine.
+                </div>
+                <div class="risk-meta">Impact: Isolated</div>
+            </div>
+
+            <!-- Col 3: Reputation -->
+            <div class="risk-col">
+                <div class="risk-title">If Reputation Hits</div>
+                <div class="risk-desc">
+                    Because the core is free and open, there is no "scam" narrative. The worst case is "it didn't work," not "they took our money."
+                </div>
+                <div class="risk-meta">Impact: Defensible</div>
+            </div>
+        </div>
+
+        <!-- Optionality Footer -->
+        <div class="optionality-section">
+            <div class="opt-title">Season 3 Is Optional</div>
+            <div class="opt-desc">
+                Paid services are demand-driven. There is no commitment to build until a buyer asks.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+[
+  {
+    "name": "Governance Diagnostic",
+    "purpose": "Map decision authority and risk across governance structures",
+    "applies_to": [
+      "Cooperative",
+      "Community",
+      "Municipal"
+    ],
+    "status": "Active",
+    "last_used": "2026-01-25"
+  },
+  {
+    "name": "Legal Check",
+    "purpose": "Validate compliance and flag legal risks before action",
+    "applies_to": [
+      "All"
+    ],
+    "status": "Active",
+    "last_used": "2026-01-27"
+  },
+  {
+    "name": "FX Converter",
+    "purpose": "Convert currencies with live rates for financial decisions",
+    "applies_to": [
+      "Enterprise",
+      "Personal"
+    ],
+    "status": "Active",
+    "last_used": "2026-01-20"
+  },
+  {
+    "name": "Health Protocol",
+    "purpose": "Fatigue and cognitive load check before critical work",
+    "applies_to": [
+      "Personal"
+    ],
+    "status": "Active",
+    "last_used": "2026-01-26"
+  }
+]

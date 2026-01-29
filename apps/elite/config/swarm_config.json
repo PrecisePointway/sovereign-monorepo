@@ -1,0 +1,72 @@
+{
+  "version": "2.0.0",
+  "name": "Sovereign Sanctuary Elite Swarm",
+  "description": "Configuration for distributed node orchestration and self-healing",
+  
+  "nodes": {
+    "controller": {
+      "ip": "127.0.0.1",
+      "role": "controller",
+      "port": 22,
+      "description": "Local controller node"
+    },
+    "pc1_blade": {
+      "ip": "100.94.217.81",
+      "role": "primary",
+      "port": 22,
+      "description": "Primary compute node (Tailscale)"
+    },
+    "pc2_echo": {
+      "ip": "100.94.217.82",
+      "role": "compute",
+      "port": 22,
+      "description": "Secondary compute node (Tailscale)"
+    },
+    "pc4_local": {
+      "ip": "192.168.1.100",
+      "role": "backup",
+      "port": 22,
+      "description": "Local backup node"
+    }
+  },
+  
+  "thresholds": {
+    "cpu_max": 95,
+    "memory_max": 90,
+    "disk_min": 10,
+    "response_timeout": 30
+  },
+  
+  "heal_strategies": [
+    "restart_process",
+    "clear_temp",
+    "restart_service",
+    "reboot_system"
+  ],
+  
+  "model_mesh": {
+    "default_model": "gpt-4.1-mini",
+    "fallback_models": ["gpt-4.1-nano", "gemini-2.5-flash"],
+    "routing_strategy": "cost_optimized",
+    "max_tokens": 4096,
+    "temperature": 0.7
+  },
+  
+  "evidence": {
+    "ledger_path": "evidence/ledger.jsonl",
+    "sitrep_path": "evidence/SITREP.md",
+    "learn_db_path": "evidence/learn_db.jsonl",
+    "hash_algorithm": "sha256"
+  },
+  
+  "daemon": {
+    "mode": "production",
+    "watchdog_enabled": true,
+    "watchdog_interval_sec": 60,
+    "max_runtime_hours": 24,
+    "health_check_interval_sec": 30,
+    "auto_restart_on_failure": true,
+    "max_restart_attempts": 5,
+    "log_level": "INFO"
+  }
+}

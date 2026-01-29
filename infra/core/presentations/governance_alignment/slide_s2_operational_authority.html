@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authority & Accountability</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;600&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #f0f0f0; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            display: grid;
+            grid-template-rows: 160px 1fr;
+        }
+
+        /* Grid Lines */
+        .grid-line-horizontal {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 160px;
+            height: 2px;
+            background-color: #000000;
+            z-index: 10;
+        }
+        
+        .grid-line-vertical {
+            position: absolute;
+            top: 160px;
+            bottom: 0;
+            left: 50%;
+            width: 1px;
+            background-color: #E0E0E0;
+            z-index: 10;
+        }
+
+        /* Header Section */
+        .header-section {
+            padding: 40px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .role-tag {
+            font-family: 'Roboto Mono', monospace;
+            color: #666666;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .role-tag::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            background-color: #666666;
+            margin-right: 8px;
+        }
+
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 48px;
+            line-height: 1.1;
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        /* Content Section */
+        .zones-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 100%;
+        }
+
+        .zone {
+            padding: 50px 60px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .zone-header {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            padding-bottom: 15px;
+        }
+
+        .zone-steven .zone-header {
+            color: #000000;
+            border-bottom: 4px solid #000000;
+        }
+
+        .zone-system .zone-header {
+            color: #666666;
+            border-bottom: 4px dashed #666666;
+        }
+
+        .responsibility-list {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .resp-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .resp-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            color: #000000;
+            margin-bottom: 5px;
+        }
+
+        .resp-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            color: #333333;
+            line-height: 1.5;
+        }
+
+        /* Footer Message */
+        .footer-msg {
+            position: absolute;
+            bottom: 40px;
+            left: 60px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 14px;
+            color: #0040FF;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- Grid Lines -->
+        <div class="grid-line-horizontal"></div>
+        <div class="grid-line-vertical"></div>
+
+        <!-- Header -->
+        <div class="header-section">
+            <div class="role-tag">Steven // Operational Lens</div>
+            <h2>Authority &amp; Accountability:<br>Defined Boundaries</h2>
+        </div>
+
+        <!-- Content -->
+        <div class="zones-container">
+            <!-- Left Zone: Steven -->
+            <div class="zone zone-steven">
+                <div class="zone-header">Operational Command</div>
+                <div class="responsibility-list">
+                    <div class="resp-item">
+                        <div class="resp-title">Deployment Decisions</div>
+                        <div class="resp-desc">You have final authority on when and where to deploy specific modules.</div>
+                    </div>
+                    <div class="resp-item">
+                        <div class="resp-title">Incident Response</div>
+                        <div class="resp-desc">Tactical control during operational events or failures.</div>
+                    </div>
+                    <div class="resp-item">
+                        <div class="resp-title">Resource Allocation</div>
+                        <div class="resp-desc">Direct control over infrastructure spend and compute resources.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Zone: System/Advisory -->
+            <div class="zone zone-system">
+                <div class="zone-header">Advisory &amp; Support</div>
+                <div class="responsibility-list">
+                    <div class="resp-item">
+                        <div class="resp-title">Strategic Consensus</div>
+                        <div class="resp-desc">Advisory input on long-term direction and ethical boundaries.</div>
+                    </div>
+                    <div class="resp-item">
+                        <div class="resp-title">Tooling &amp; Infrastructure</div>
+                        <div class="resp-desc">The system provides the capabilities; it does not dictate the tactics.</div>
+                    </div>
+                    <div class="resp-item">
+                        <div class="resp-title">No Hidden Management</div>
+                        <div class="resp-desc">Support is available on request. No invisible obligations.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Message -->
+        <div class="footer-msg">
+            You have clear authority and no invisible risk.
+        </div>
+    </div>
+</body>
+</html>
