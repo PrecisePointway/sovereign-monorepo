@@ -1,6 +1,18 @@
 # Sovereign Monorepo
 
-**WARNING: This repository is OBSERVATIONAL ONLY. No enforcement, no automated decisions, no downstream hooks until Season 3 Kernel v0 is deployed.**
+**STATUS: SEASON 2 CLOSED — OPEN SOURCE**
+
+---
+
+## Canonical Governance Document
+
+> **CANONICAL / NON-NEGOTIABLE**
+>
+> The authoritative governance boundary for this repository is defined in:
+>
+> **[Sovereign_Governance_Core_Boundary.pdf](./Sovereign_Governance_Core_Boundary.pdf)**
+>
+> This document is immutable. It defines what is core, what is not, and what constitutes misuse. All contributors, auditors, partners, and regulators must reference this document before any action.
 
 ---
 
@@ -8,20 +20,24 @@
 
 This monorepo consolidates all Sovereign ecosystem components into a single, governed structure. It is designed to prevent accidental activation, authority creep, and misuse during the pre-Season 3 phase.
 
+**WARNING:** This repository is **OBSERVATIONAL ONLY**. No enforcement, no automated decisions, no downstream hooks until Season 3 Kernel v0 is deployed.
+
 ## Critical Documents
 
 Before making any changes, you **must** read and understand:
 
-| Document | Purpose |
-| :--- | :--- |
-| [CORE_BOUNDARY.md](./CORE_BOUNDARY.md) | Defines what is and is not part of the Governance Core |
-| [AUTHORITY_CLASSIFICATION.md](./AUTHORITY_CLASSIFICATION.md) | Classifies all components by authority level |
-| [MISUSE_SIGNALS.md](./MISUSE_SIGNALS.md) | Log for observed misuse signals |
+| Document | Purpose | Status |
+| :--- | :--- | :--- |
+| [Sovereign_Governance_Core_Boundary.pdf](./Sovereign_Governance_Core_Boundary.pdf) | **CANONICAL** — Defines the governance core boundary | Immutable |
+| [CORE_BOUNDARY.md](./CORE_BOUNDARY.md) | Markdown source for the governance boundary | Source |
+| [AUTHORITY_CLASSIFICATION.md](./AUTHORITY_CLASSIFICATION.md) | Classifies all components by authority level | Active |
+| [MISUSE_SIGNALS.md](./MISUSE_SIGNALS.md) | Log for observed misuse signals | Active |
 
 ## Repository Structure
 
 ```
 sovereign/
+├── Sovereign_Governance_Core_Boundary.pdf   # CANONICAL
 ├── CORE_BOUNDARY.md
 ├── AUTHORITY_CLASSIFICATION.md
 ├── MISUSE_SIGNALS.md
@@ -64,8 +80,16 @@ sovereign/
 
 4. **Respect the Core Boundary.** Only components listed in `CORE_BOUNDARY.md` may contain governance logic.
 
+5. **Reference the CANONICAL PDF.** The PDF is the authoritative source for governance boundaries.
+
 ---
 
-**Version:** 1.0.0
+## License
+
+This project is open source. See [LICENSE](./LICENSE) for details.
+
+---
+
+**Version:** 2.0.0
 **Date:** January 29, 2026
-**Status:** Pre-Season 3 (Observational Only)
+**Status:** Season 2 Closed — Open Source
